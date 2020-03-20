@@ -1,0 +1,40 @@
+.showPopup {  
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    animation-name: popUpshow;
+    animation-duration:1s ease;
+    justify-content: center;
+  }  
+  .popup-content {  
+    width: 30vw;
+    height: 60vh;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    justify-content: center;
+    background-color: #212529;
+    color: aliceblue;
+  }
+  @keyframes popUpshow{
+    from{
+      width:0%;
+      height: 0%;
+      opacity: 0;
+    }
+    to{
+      width:100%;
+      height: 100%;
+
+    }
+  }
+    
+  .hidePopuP{
+      display: none;
+  }
