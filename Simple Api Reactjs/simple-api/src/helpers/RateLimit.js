@@ -11,8 +11,8 @@ function RateLimit(days,apiCallLimit){
     this.currentDate = new Date(Date.now())
     this.setUpdateAt=(date)=>{
         this.lastUpdate=date;
-        console.log(`Set last Update  date ${this.currentDate}`)
-        localStorage.setItem('updatedAt',this.currentDate)
+        console.log(`Set last Update  date ${date}`)
+        localStorage.setItem('updatedAt',date)
         
     }
     this.incrementApiCounter=()=>{
