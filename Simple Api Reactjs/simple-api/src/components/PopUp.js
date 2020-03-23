@@ -4,7 +4,6 @@ const PopUp=(props)=>{
     const classSelect=props.showPopUp? "showPopup": "hidePopuP"
 /*     console.log("Show PopUp window " + props.showPopUp)
     console.log(" Select Class " + classSelect) */
-    console.log(props)
     return(
         <div className={classSelect}>
          <div className="popup-content">

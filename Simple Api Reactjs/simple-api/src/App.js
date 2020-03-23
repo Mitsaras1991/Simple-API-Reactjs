@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import * as PostService from './services/PostService'
+import  {PostService} from './services/PostService'
+
 import Axios from 'axios';
 import PopUp from './components/PopUp'
 import RateLimit from './helpers/RateLimit'
@@ -15,7 +16,8 @@ constructor(props){
     currentPosts:[],
     allPosts:localStorage.getItem('posts')?JSON.parse(localStorage.getItem('posts')):[],
     error:null,
-    rateLimit:new RateLimit(2,2),
+    //rateLimit:new RateLimit(2,2),
+    postService:new PostService(),
     currentPage: null,
    totalPages: null,
    showPopUpError:false
@@ -23,15 +25,22 @@ constructor(props){
   
 }
   
-  componentDidMount(){
+   componentDidMount(){
+   const {postService}=this.state
    
- this.state.rateLimit.fetchPost().then(posts=>{
+  postService.fetchPosts().then(posts=>{
+    console.log(posts)
+    this.setState({allPosts:posts})
+  }).catch(e=>{
+this.setState({error:e})
+   })
+ /* this.state.rateLimit.fetchPost().then(posts=>{
     console.log(posts)
     this.setState({allPosts:posts})
   }).catch(({error})=>{
     console.log(error)
-    this.setState({error,showPopUpError:true})
-   })
+    this.setState({error})
+   }) */
 
  }
  closeErrorPopup=()=>{
@@ -48,18 +57,16 @@ constructor(props){
 }
    getData=async(e)=>{
      e.preventDefault();
-     console.log(this.state.rateLimit.apiCallCounter)
-    await this.state.rateLimit.fetchPost().then(posts=>{
-      this.setState({posts})
-    }).catch(({error})=>{
-      console.log(error)
-      this.setState({error,showPopUpError:true})
+     const {postService}=this.state
+     await postService.fetchPosts().then(posts=>this.setState({posts})).catch(e=>{
+       console.log(e)
+      this.setState({error:e,showPopUpError:true})
          })
   }
  render(){ 
    const {allPosts,currentPosts,currentPage,totalPages,error,showPopUpError}=this.state
    const totalPosts=allPosts.length
-console.log(error)
+console.log(allPosts)
    if (totalPosts === 0) return null;
   return (
     <div className="App">

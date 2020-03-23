@@ -10,7 +10,6 @@ const TableRow=({post,index})=>{
   
  return  ( <>  
     <tr>
-    {console.log(popUpContent)}
              <th scope="row">{index}</th>
              <td>{post.userId}</td>
              <td>{post.title}</td>

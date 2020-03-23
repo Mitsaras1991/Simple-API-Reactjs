@@ -1,7 +1,7 @@
 import React from 'react'
 import TableRow from './TableRow'
  const Posts=({posts})=>{
-    const rendrPosts=posts.length?
+    const renderPosts=posts.length?
     <table className="table table-hover">
     <thead>
     <tr>
@@ -16,7 +16,7 @@ import TableRow from './TableRow'
     </tbody>
     </table>
     :<div>No Post Available</div>
-    return rendrPosts
+    return renderPosts
 }
 
 export default Posts
